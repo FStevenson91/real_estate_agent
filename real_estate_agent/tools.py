@@ -1,17 +1,17 @@
 import requests
 
-def detectar_ubicacion() -> dict:
-    """Detecta el país del usuario basándose en su IP."""
+def detect_location() -> dict:
+    """Detect the user's country based on their IP."""
     try:
         response = requests.get("https://ipapi.co/json/", timeout=5)
         data = response.json()
         return {
-            "statuts": "success",
-            "pais": data.get("country_name", "Desconocido"),
-            "ciudad": data.get("city", "Desconocida")
+            "status": "success",
+            "country": data.get("country_name", "Unknown"),
+            "city": data.get("city", "Unknown")
         }
     except Exception as e:
         return {
             "status": "error",
-            "error_message": "No se pudo detectar ubicación: " + str(e)
+            "error_message": "Could not detect location: " + str(e)
         }

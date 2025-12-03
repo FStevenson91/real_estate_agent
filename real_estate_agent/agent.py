@@ -1,7 +1,7 @@
 from google.adk.agents import Agent
 from google.genai import types
 from .prompt import agent_prompt
-from .tools import detectar_ubicacion
+from .tools import detect_location
 
 
 real_estate_agent = Agent(
@@ -9,6 +9,6 @@ real_estate_agent = Agent(
     model="gemini-2.0-flash",
     description="real estate agent that qualifies leads using the BANT criteria in a few steps.",
     instruction=agent_prompt,
-     tools =[detectar_ubicacion]
+     tools =[detect_location]
     #  generate_content_config=types.GenerateContentConfig(temperature=0.5)
 )
