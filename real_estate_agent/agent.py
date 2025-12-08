@@ -2,7 +2,7 @@ from google.adk.agents import Agent
 from google.genai import types
 from .prompt import agent_prompt
 from .tools import detect_location, create_contact, get_contact, update_contact, list_contacts
-from .callback import before_model_callback
+from .callbacks import before_model_callback
 
 
 real_estate_agent = Agent(
