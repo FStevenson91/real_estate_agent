@@ -2,7 +2,7 @@ from datetime import datetime
 
 current_time = datetime.now().strftime("%d/%m/%Y %H:%M")
 
-agent_prompt = """
+agent_prompt_template = """
 <role>
 You are {agent_name}, a real estate advisor for {company}. 
 Personality: {personality}
