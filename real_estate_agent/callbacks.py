@@ -1,7 +1,7 @@
 from google.adk.agents.callback_context import CallbackContext
 from google.adk.models.llm_request import LlmRequest
 from .prompt import agent_prompt_template
-from .config import AGENT_NAME, COMPANY, PERSONALITY, DEFAULTS
+from .config import AGENT_NAME, COMPANY, PERSONALITY, DEFAULTS, BANT_QUESTIONS, CONVERSATION_EXAMPLES
 from .tools.crm import get_contact
 from .tools.location import detect_location
 
@@ -59,13 +59,26 @@ def before_model_callback(callback_context: CallbackContext, llm_request: LlmReq
     crm_data = get_contact_context(phone_number)
     location_data = get_location_context()
 
+     # GET BANT questions (or default config)
+    bant = BANT_QUESTIONS or DEFAULTS.get("bant_questions", {})
+
+     # Get conversation examples (or default config)
+    examples = CONVERSATION_EXAMPLES or DEFAULTS.get("conversation_examples", "")
+
     final_instruction = agent_prompt_template.format(
         agent_name=AGENT_NAME or DEFAULTS["agent_name"],
         company=COMPANY or DEFAULTS["company"],
         personality=PERSONALITY or DEFAULTS["personality"],
         contact_context=crm_data["contact_context"],
         greeting_instruction=crm_data["greeting_instruction"],
-        detected_country=location_data["detected_country"]
+        detected_country=location_data["detected_country"],
+        # BANT variables
+        bant_need=bant.get("need", "what they need"),
+        bant_timeline=bant.get("timeline", "when they need it"),
+        bant_budget=bant.get("budget", "their budget"),
+        bant_authority=bant.get("authority", "who decides"),
+        # conversation examples
+        conversation_examples=examples
     )
 
     if llm_request.config:
