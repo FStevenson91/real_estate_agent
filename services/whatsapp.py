@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 
 load_dotenv(override=True)
 
-# Configuración desde variables de entorno
+# Variables de entorno
 SPICYTOOL_API_URL = os.getenv("SPICYTOOL_API_URL", "https://api.spicytool.net/api/webhooks/whatsApp/sendMessage")
 SPICY_API_TOKEN = os.getenv("SPICY_API_TOKEN")
 
