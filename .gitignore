@@ -17,3 +17,6 @@ data/*.json
 
 # OS
 .DS_Store
+
+# Temporary ignore
+deploy.py

@@ -45,7 +45,7 @@ def get_contact(contact_id: str) -> dict:
         response = requests.get(url, headers=headers, timeout=10)
         data = response.json()
         
-        # Si el CRM retorna error disfrazado de éxito
+        # If the CRM returns an error disguised as a success
         if data.get("message") or not data.get("name"):
             return {
                 "status": "not_found",
