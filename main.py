@@ -2,7 +2,7 @@ from google.adk.sessions import InMemorySessionService
 from google.adk.runners import Runner
 from google.genai.types import Content, Part
 from dotenv import load_dotenv
-from real_estate_agent.agent import real_estate_agent
+from real_estate_agent.agent import root_agent
 import asyncio
 import json
 
@@ -26,7 +26,7 @@ asyncio.run(session_service.create_session(
     ))
 
 runner = Runner(
-    agent=real_estate_agent,
+    agent=root_agent,
     app_name=APP_NAME,
     session_service=session_service,
 )

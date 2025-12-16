@@ -8,7 +8,7 @@ class AgentResponse(BaseModel):
     message: str        
     should_escalate: bool
 
-real_estate_agent = Agent(
+root_agent = Agent(
     name="real_estate_agent",
     model="gemini-2.0-flash",
     description="real estate agent that qualifies leads using the BANT criteria in a few steps.",
