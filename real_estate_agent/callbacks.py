@@ -37,9 +37,7 @@ def get_contact_context(phone_number: str = None) -> dict:
 
     
 def get_location_context() -> dict:
-    """
-    Detects user location.
-    """
+    """Detects user location."""
     result = detect_location()
     
     if result["status"] == "success":
