@@ -51,7 +51,7 @@ while True:
             
             clean_text = response_text.replace("```json", "").replace("```", "").strip()
 
-            # Parsear JSON
+            # Parse JSON
             try:
                 response_data = json.loads(clean_text)
                 message = response_data.get("message", response_text)
@@ -63,5 +63,5 @@ while True:
                     print("⚠️ ESCALANDO A HUMANO...")
                     
             except json.JSONDecodeError:
-                # Si no es JSON válido, mostrar tal cual
+                # If it is not valid JSON, display it as-is
                 print("Agent: " + response_text)
