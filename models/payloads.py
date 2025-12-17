@@ -41,7 +41,7 @@ class WebhookPayload(BaseModel):
     from_: str = Field(default="", alias="from")  # "from" is a reserved word in Python
     contactId: str = ""
     assignedContainer: str = ""
-    conversation: List[Message] = []
+    conversation: List[Message] = Field(default_factory=list)
 
     class Config:
         populate_by_name = True
